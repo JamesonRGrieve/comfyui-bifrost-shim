@@ -1,0 +1,8 @@
+# Binaries
+/comfyui-bifrost-shim
+*.exe
+*.test
+*.out
+
+# Go
+/vendor/

@@ -1,0 +1,50 @@
+{
+  "default_model": "sdxl-realvis",
+  "models": {
+    "sdxl-realvis": {
+      "workflow": "sdxl.json",
+      "checkpoint": "RealVisXL_V5.0_fp16.safetensors",
+      "bindings": {
+        "positive": ["6", "text"],
+        "negative": ["7", "text"],
+        "checkpoint": ["4", "ckpt_name"],
+        "seed": ["3", "seed"],
+        "width": ["5", "width"],
+        "height": ["5", "height"],
+        "steps": ["3", "steps"],
+        "cfg": ["3", "cfg"]
+      },
+      "defaults": {"steps": 30, "cfg": 7.0, "negative": "low quality, worst quality, blurry, deformed, watermark, text"}
+    },
+    "sdxl-juggernaut": {
+      "workflow": "sdxl.json",
+      "checkpoint": "juggernautXL.safetensors",
+      "bindings": {
+        "positive": ["6", "text"],
+        "negative": ["7", "text"],
+        "checkpoint": ["4", "ckpt_name"],
+        "seed": ["3", "seed"],
+        "width": ["5", "width"],
+        "height": ["5", "height"],
+        "steps": ["3", "steps"],
+        "cfg": ["3", "cfg"]
+      },
+      "defaults": {"steps": 30, "cfg": 6.0, "negative": "low quality, worst quality, blurry, deformed, watermark, text"}
+    },
+    "sdxl-nova-anime": {
+      "workflow": "sdxl.json",
+      "checkpoint": "novaAnimeXL_ilV125.safetensors",
+      "bindings": {
+        "positive": ["6", "text"],
+        "negative": ["7", "text"],
+        "checkpoint": ["4", "ckpt_name"],
+        "seed": ["3", "seed"],
+        "width": ["5", "width"],
+        "height": ["5", "height"],
+        "steps": ["3", "steps"],
+        "cfg": ["3", "cfg"]
+      },
+      "defaults": {"steps": 28, "cfg": 5.0, "negative": "lowres, bad anatomy, bad hands, worst quality, watermark, signature"}
+    }
+  }
+}

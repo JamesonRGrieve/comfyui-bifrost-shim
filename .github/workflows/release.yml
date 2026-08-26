@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Build a static linux/amd64 binary on a version tag and publish it as a release
+# asset. The deploying tofu module (host_binary) pulls:
+#   https://github.com/JamesonRGrieve/comfyui-bifrost-shim/releases/download/<tag>/comfyui-bifrost-shim-linux-amd64
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+      - name: Build static binary
+        env:
+          CGO_ENABLED: "0"
+          GOOS: linux
+          GOARCH: amd64
+        run: |
+          go build -trimpath -ldflags "-s -w" -o comfyui-bifrost-shim-linux-amd64 .
+          sha256sum comfyui-bifrost-shim-linux-amd64 > comfyui-bifrost-shim-linux-amd64.sha256
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            comfyui-bifrost-shim-linux-amd64
+            comfyui-bifrost-shim-linux-amd64.sha256
+          generate_release_notes: true
